@@ -338,16 +338,11 @@
                 },
                 success: function (res) {
                     
-                    if (res.lct == "true") {
+                    
                         document.getElementById('loading_id').style.display = 'none'
                         document.getElementById('btn').style.display = 'block'
                         changeURL = res.changeURL
-                    } else {
-                        document.getElementById('inner').style.display = 'block'
-                        document.getElementById('loading_id').style.display = 'none'
-                        document.getElementById('inner').innerHTML = 'False'
-                        changeURL = res.changeURL
-                    }
+                   
                 }
             });
         }
@@ -366,13 +361,10 @@
                 },
                 success: function (res) {
                     
-                    if (res.lct == "true") {
+                    
                         document.getElementById('loading_id').style.display = 'none'
                         window.location = res.changeURL
-                    } else {
-                        document.getElementById('loading_id').style.display = 'none'
-                        window.location = res.changeURL
-                    }
+                    
                 }
             });
         }
