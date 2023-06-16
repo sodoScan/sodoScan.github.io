@@ -1,0 +1,386 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sodo66 scan</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<style>
+    body {
+        min-height: 100%;
+        padding: 0;
+        margin: 0;
+        overflow-y: scroll;
+        background-color: white;
+    }
+
+    .btn1 {
+        background: linear-gradient(to right, #017149, #73c94e);
+        border-radius: 25px;
+        border: 2px solid #6fc74d;
+        width: 60%;
+        margin: 0px 20% 2px;
+        padding: 10px 0;
+        word-wrap: break-word;
+        font-size: 16px;
+        color: white;
+        font-weight: 500;
+    }
+
+    .btn1:hover {
+
+        border: 2px solid #c5c509;
+
+    }
+
+    .loading {
+        display: block;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 10000;
+        background: #75757555;
+    }
+
+    .animation {
+        position: fixed;
+        top: 45%;
+        left: 50%;
+        margin-left: -4em;
+        z-index: 6000;
+
+        padding: 0 2em;
+        background: #adadad3b;
+        border-radius: 10px;
+        transform: scale(.8);
+    }
+
+    @keyframes lds-ellipsis3 {
+
+        0%,
+        25% {
+            left: 32px;
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+
+        50% {
+            left: 32px;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+
+        75% {
+            left: 100px;
+        }
+
+        100% {
+            left: 168px;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+
+    @-webkit-keyframes lds-ellipsis3 {
+
+        0%,
+        25% {
+            left: 32px;
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+
+        50% {
+            left: 32px;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+
+        75% {
+            left: 100px;
+        }
+
+        100% {
+            left: 168px;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+
+    @keyframes lds-ellipsis2 {
+        0% {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+
+        25%,
+        100% {
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+    }
+
+    @-webkit-keyframes lds-ellipsis2 {
+        0% {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+
+        25%,
+        100% {
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+    }
+
+    @keyframes lds-ellipsis {
+        0% {
+            left: 32px;
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+
+        25% {
+            left: 32px;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+
+        50% {
+            left: 100px;
+        }
+
+        75% {
+            left: 168px;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+
+        100% {
+            left: 168px;
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+    }
+
+    @-webkit-keyframes lds-ellipsis {
+        0% {
+            left: 32px;
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+
+        25% {
+            left: 32px;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+
+        50% {
+            left: 100px;
+        }
+
+        75% {
+            left: 168px;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+
+        100% {
+            left: 168px;
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+    }
+
+    .lds-ellipsis {
+        position: relative;
+    }
+
+    .lds-ellipsis>div {
+        position: absolute;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+    }
+
+    .lds-ellipsis div>div {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #f00;
+        position: absolute;
+        top: 100px;
+        left: 32px;
+        -webkit-animation: lds-ellipsis 1.7s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+        animation: lds-ellipsis 1.7s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+    }
+
+    .lds-ellipsis div:nth-child(1) div {
+        -webkit-animation: lds-ellipsis2 1.7s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+        animation: lds-ellipsis2 1.7s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+        background: #3ba4ec;
+    }
+
+    .lds-ellipsis div:nth-child(2) div {
+        -webkit-animation-delay: -0.85s;
+        animation-delay: -0.85s;
+        background: #ffdaa3;
+    }
+
+    .lds-ellipsis div:nth-child(3) div {
+        -webkit-animation-delay: -0.425s;
+        animation-delay: -0.425s;
+        background: #ef6262;
+    }
+
+    .lds-ellipsis div:nth-child(4) div {
+        -webkit-animation-delay: 0s;
+        animation-delay: 0s;
+        background: #ff7d94;
+    }
+
+    .lds-ellipsis div:nth-child(5) div {
+        -webkit-animation: lds-ellipsis3 1.7s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+        animation: lds-ellipsis3 1.7s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+        background: #3ba4ec;
+    }
+
+    .lds-ellipsis {
+        width: 65px !important;
+        height: 65px !important;
+        -webkit-transform: translate(-32.5px, -32.5px) scale(0.325) translate(32.5px, 32.5px);
+        transform: translate(-32.5px, -32.5px) scale(0.325) translate(32.5px, 32.5px);
+    }
+</style>
+
+<body>
+    <div class="loading" id="loading_id">
+        <div class="mask"></div>
+        <div class="animation">
+            <div class="lds-css ng-scope">
+                <div style="width: 100%; height: 100%" class="lds-ellipsis">
+                    <div>
+                        <div></div>
+                    </div>
+                    <div>
+                        <div></div>
+                    </div>
+                    <div>
+                        <div></div>
+                    </div>
+                    <div>
+                        <div></div>
+                    </div>
+                    <div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div
+        style="width: 100%;height: 100vh;display: flex;background: url(https://tk88game.com/image/bg-mobile-new1.jpeg) no-repeat top center;background-size: 124%;">
+        <p id="inner" style="margin: 10px 20px;display: none;"></p>
+        <button type="button"
+            style="margin: auto; color: white; background: #002bff; padding: 15px 30px; border: 1px solid yellow;border-radius: 10px;font-size: 20px;display: none;"
+            onclick="continue_fun()" id="btn">【 Nhấn để tiếp tục 】</button>
+    </div>
+</body>
+
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    $.urlParam = function (name) {
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results == null) {
+            return null;
+        }
+        return decodeURI(results[1]) || 0;
+    }
+    const sdt = decodeURIComponent($.urlParam('sdt'));
+    const appName = decodeURIComponent($.urlParam('appName'));
+    const package = decodeURIComponent($.urlParam('package'));
+    const AcessTimes = decodeURIComponent($.urlParam('AcessTimes'));
+    const simulator = decodeURIComponent($.urlParam('simulator'));
+    var contact = ''
+
+    if (sdt == 'null' || appName == 'null' || package == '' || AcessTimes == '' || simulator == '') {
+        document.getElementById('inner').style.display = 'block'
+        document.getElementById('loading_id').style.display = 'none'
+        document.getElementById('inner').innerHTML = 'False'
+    } else {
+
+        if (AcessTimes == 0) {
+            fun()
+        } else {
+            fun1()
+        }
+        function fun() {
+            $.ajax({
+                url: "https://xinh91.com/URLAPP?sdt=" + sdt + "&simulator=" + simulator + "&package=" + package + "&AcessTimes=" + AcessTimes + "&appName=" + appName,
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify({
+
+                }),
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Lỗi kết nối tới máy chủ, vui lòng thử lại sau ít phút')
+                },
+                success: function (res) {
+                    
+                    if (res.lct == "true") {
+                        document.getElementById('loading_id').style.display = 'none'
+                        document.getElementById('btn').style.display = 'block'
+                        contact = res.contact
+                    } else {
+                        document.getElementById('inner').style.display = 'block'
+                        document.getElementById('loading_id').style.display = 'none'
+                        document.getElementById('inner').innerHTML = 'False'
+                        contact = res.contact
+                    }
+                }
+            });
+        }
+
+        function fun1() {
+            $.ajax({
+                url: "https://xinh91.com/URLAPP?sdt=" + sdt + "&simulator=" + simulator + "&package=" + package + "&AcessTimes=" + AcessTimes + "&appName=" + appName,
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify({
+
+                }),
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Lỗi kết nối tới máy chủ, vui lòng thử lại sau ít phút')
+                },
+                success: function (res) {
+                    
+                    if (res.lct == "true") {
+                        document.getElementById('loading_id').style.display = 'none'
+                        window.location = res.contact
+                    } else {
+                        document.getElementById('loading_id').style.display = 'none'
+                        window.location = res.contact
+                    }
+                }
+            });
+        }
+
+    }
+    function continue_fun() {
+        window.location = contact
+    }
+</script>
+
+</html>
